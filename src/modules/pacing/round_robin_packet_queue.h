@@ -1,0 +1,7 @@
+#ifndef __TEMPLE_RTC_PACING_ROUND_ROBIN_QUEUE_H__
+#define __TEMPLE_RTC_PACING_ROUND_ROBIN_QUEUE_H__
+
+typedef struct round_robin_queue round_robin_queue;
+
+#endif // __TEMPLE_RTC_PACING_ROUND_ROBIN_QUEUE_H__
+
