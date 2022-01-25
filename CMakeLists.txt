@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(TempleRTC C)
+project(TempleRTC C CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 message("CMAKE_SYSTEM_NAME: ${CMAKE_SYSTEM_NAME}")
@@ -36,4 +36,22 @@ if (UNIX)
     target_link_libraries(TempleRTC pthread)
 endif()
 
+
+set(CMAKE_CXX_STANDARD 11)
+add_subdirectory(
+    ${CMAKE_SOURCE_DIR}/third_party/googletest/
+    EXCLUDE_FROM_ALL)
+enable_testing()
+add_executable(
+  rtc_test
+  ${CMAKE_SOURCE_DIR}/src/base/array_test.cpp
+  ${CMAKE_SOURCE_DIR}/src/modules/pacing/interval_budget_test.cpp
+)
+target_link_libraries(
+    rtc_test
+    TempleRTC
+    gtest_main
+)
+include(googletest)
+gtest_discover_tests(rtc_test)
 

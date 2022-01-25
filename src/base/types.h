@@ -11,6 +11,7 @@
 #define RTC_MAX(a, b) ((a) > (b) ? (a) : (b))
 #define RTC_MIN(a, b) ((a) < (b) ? (a) : (b))
 #define RTC_ARRAY_SIZE(a) (sizeof(a) / sizeof(a[0]))
+#define RTC_CAST(tn, a) ((tn)(a))
 
 #define RTC_MAX_INT32   0x7fffffff
 #define RTC_MAX_UINT32  0xffffffff

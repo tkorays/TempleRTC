@@ -6,7 +6,7 @@ struct rtc_cs {
 #if defined(RTC_WIN)
     CRITICAL_SECTION crit;
 #elif defined(RTC_UNIX)
-    pthread_mutex_t mutex;
+    //pthread_mutex_t mutex;
 #else
 #error "Unsported platform."
 #endif
