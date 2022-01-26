@@ -2,15 +2,15 @@
 #include "base/memory.h"
 
 
-rtc_interval_budget* rtc_interval_budget_new(
-        rtc_interval_budget* budget,
+interval_budget* rtc_interval_budget_new(
+        interval_budget* budget,
         int target_kbps,
         rtc_bool can_build_up,
         int build_up_ms
         ) {
-    rtc_interval_budget* budget_new = RTC_NULL_PTR;
+    interval_budget* budget_new = RTC_NULL_PTR;
     if (!budget) {
-        budget_new = rtc_malloc(sizeof(rtc_interval_budget));
+        budget_new = rtc_malloc(sizeof(interval_budget));
         if (RTC_NULL_PTR == budget_new) return RTC_NULL_PTR;
         budget = budget_new;
         budget->_self_managed        = RTC_TRUE;
@@ -28,20 +28,20 @@ rtc_interval_budget* rtc_interval_budget_new(
     return budget;
 }
 
-void rtc_interval_budget_delete(rtc_interval_budget* budget) {
+void rtc_interval_budget_delete(interval_budget* budget) {
     if (budget && budget->_self_managed) {
         rtc_free(budget);
     }
 }
 
-void rtc_interval_budget_set(rtc_interval_budget* budget, int target_kbps) {
+void rtc_interval_budget_set(interval_budget* budget, int target_kbps) {
     budget->_target_kbps = target_kbps;
     budget->_max_bytes_in_budget = (budget->_max_build_up_ms * target_kbps) / 8;
     budget->_byte_remaining = RTC_MIN(RTC_MAX(-budget->_max_bytes_in_budget, budget->_byte_remaining),
             budget->_max_bytes_in_budget);
 }
 
-void rtc_interval_budget_add(rtc_interval_budget* budget, int delta_time_ms) {
+void rtc_interval_budget_add(interval_budget* budget, int delta_time_ms) {
     int bytes = budget->_target_kbps * delta_time_ms;
     if (budget->_byte_remaining || budget->_can_build_up_underuse) {
         budget->_byte_remaining = RTC_MIN(budget->_byte_remaining + bytes, budget->_max_bytes_in_budget);
@@ -50,14 +50,14 @@ void rtc_interval_budget_add(rtc_interval_budget* budget, int delta_time_ms) {
     }
 }
 
-void rtc_interval_budget_take(rtc_interval_budget* budget, size_t bytes) {
+void rtc_interval_budget_take(interval_budget* budget, size_t bytes) {
     budget->_byte_remaining = RTC_MAX(budget->_byte_remaining - bytes, -budget->_max_bytes_in_budget);
 }
 
-int rtc_interval_budget_byte_remaining(rtc_interval_budget* budget) {
+int rtc_interval_budget_byte_remaining(interval_budget* budget) {
     return RTC_MAX(budget->_byte_remaining, 0);
 }
 
-inline int rtc_interval_budget_target_kbps(rtc_interval_budget* budget) {
+inline int rtc_interval_budget_target_kbps(interval_budget* budget) {
     return budget->_target_kbps;
 }
