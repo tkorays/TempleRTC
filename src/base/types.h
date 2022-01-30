@@ -2,6 +2,7 @@
 #define __TEMPLE_RTC_TYPES_H__
 
 #include <stddef.h>
+#include <stdint.h>
 
 #define RTC_NULL        0
 #define RTC_NULL_PTR    (void*)0

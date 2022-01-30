@@ -30,5 +30,12 @@
 #define RTC_DCHECK_GT(v1, v2) (void)0
 #endif
 
+#include <stdlib.h>
+#include <stdio.h>
+static void rtc_fatal_log(const char* file, int line, const char* msg) {
+    printf("FATAL ERROR at file %s@%d: %s\n", file, line, msg);
+    abort();
+}
+
 #endif // __TEMPLE_RTC_CHECK_H__
 

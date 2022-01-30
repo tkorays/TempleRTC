@@ -1,16 +1,6 @@
 #include "base/queue.h"
 #include "base/memory.h"
 
-struct rtc_queue {
-    rtc_bool    _self_managed;
-    void*       _buffer;
-    size_t      _capacity;
-    size_t      _elm_size;
-    size_t      _elm_cnt;
-    size_t      _front_idx;
-    size_t      _back_idx;
-};
-
 
 rtc_queue* rtc_queue_new(rtc_queue* q, size_t elm_size, size_t reserve_cnt) {
     size_t capacity = 0;

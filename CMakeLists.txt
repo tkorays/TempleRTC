@@ -45,6 +45,7 @@ enable_testing()
 add_executable(
   rtc_test
   ${CMAKE_SOURCE_DIR}/src/base/array_test.cpp
+  ${CMAKE_SOURCE_DIR}/src/base/vector_test.cpp
   ${CMAKE_SOURCE_DIR}/src/modules/pacing/interval_budget_test.cpp
 )
 target_link_libraries(
