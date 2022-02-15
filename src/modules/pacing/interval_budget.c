@@ -58,6 +58,4 @@ int rtc_interval_budget_byte_remaining(interval_budget* budget) {
     return RTC_MAX(budget->_byte_remaining, 0);
 }
 
-inline int rtc_interval_budget_target_kbps(interval_budget* budget) {
-    return budget->_target_kbps;
-}
+

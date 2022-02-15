@@ -25,7 +25,9 @@ void rtc_interval_budget_set(interval_budget* budget, int target_kbps);
 void rtc_interval_budget_add(interval_budget* budget, int delta_time_ms);
 void rtc_interval_budget_take(interval_budget* budget, size_t bytes);
 int rtc_interval_budget_byte_remaining(interval_budget* budget);
-int rtc_interval_budget_target_kbps(interval_budget* budget);
+static inline int rtc_interval_budget_target_kbps(interval_budget* budget) {
+    return budget->_target_kbps;
+}
 
 #endif // __TEMPLE_RTC_PACING_INTERVAL_BUDGET_H__
 

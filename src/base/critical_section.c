@@ -1,5 +1,8 @@
 #include "base/critical_section.h"
 #include "base/memory.h"
+#if defined(RTC_WIN)
+#include <windows.h>
+#endif
 
 
 struct rtc_cs {
