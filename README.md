@@ -1,6 +1,6 @@
 # TempleRTC
+`TempleRTC` is a RTC(Real Time Communication) library written by pure C language.
+It provides the whole RTC capabilities and simple interface.
 
-```
-cmake -Bbuild_ninja -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .
-```
-
+# Author
+tkorays <tkorays@hotmail.com>

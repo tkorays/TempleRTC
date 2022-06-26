@@ -32,8 +32,12 @@ aux_source_directory(
     )
 
 add_library(TempleRTC ${TEMPLE_RTC_SRC})
+
+add_subdirectory(third_party/CFAST)
 if (UNIX)
-    target_link_libraries(TempleRTC pthread)
+    target_link_libraries(TempleRTC pthread cfast)
+else()
+    target_link_libraries(TempleRTC cfast)
 endif()
 
 

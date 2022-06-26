@@ -4,3 +4,4 @@ build/
 build_ninja/
 *.swp
 .vscode/
+.ccls_cache/

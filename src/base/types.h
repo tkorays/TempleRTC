@@ -25,5 +25,16 @@ typedef int rtc_errno;
 typedef int rtc_bool;
 typedef int(*rtc_compare_func)(void* a, void* b);
 
+typedef int64_t rtc_datarate_t;
+typedef int64_t rtc_timedelta_t;
+typedef uint32_t rtc_timestamp_t;
+
+#define rtc_datarate_bps(r) (r)
+#define rtc_datarate_kbps(r) ((r) / 1000)
+#define rtc_datarate_bps_or(r, v) ((r) > 0 ? (r) : (v))
+#define rtc_datarate_kbps_or(r, v) ((r) > 0 ? ((r) / 1000) : (v))
+#define rtc_datarate_bytes_per_sec(r) ((r) / 8)
+
+
 #endif // __TEMPLE_RTC_TYPES_H__
 
